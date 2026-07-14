@@ -1,0 +1,42 @@
+[package]
+name = "personal-website"
+version = "0.1.0"
+edition = "2021"
+description = "Teddy Tennant's personal site, in Rust (Leptos + WASM)"
+
+# essays-gen is a native build-time tool, not part of the wasm app. It renders the
+# standalone essay pages (which keep their own CSS and are served static) from Rust.
+# default-members keeps it out of the wasm build (it uses std::fs); it's invoked
+# explicitly with `cargo run -p essays-gen`.
+[workspace]
+members = ["essays-gen"]
+default-members = ["."]
+
+[dependencies]
+leptos = { version = "0.8", features = ["csr"] }
+leptos_router = "0.8"
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+js-sys = "0.3"
+console_error_panic_hook = "0.1"
+
+[dependencies.web-sys]
+version = "0.3"
+features = [
+  "Window", "Document", "Element", "HtmlElement", "HtmlCanvasElement", "HtmlImageElement",
+  "CanvasRenderingContext2d", "ImageData",
+  "WebGl2RenderingContext", "WebGlProgram", "WebGlShader", "WebGlUniformLocation",
+  "WebGlBuffer", "WebGlTexture", "WebGlVertexArrayObject", "WebGlShaderPrecisionFormat",
+  "IntersectionObserver", "IntersectionObserverEntry", "IntersectionObserverInit",
+  "ResizeObserver", "ResizeObserverEntry", "ResizeObserverSize", "VisualViewport",
+  "MediaQueryList", "Storage", "DomTokenList", "CssStyleDeclaration",
+  "Performance", "Event", "EventTarget", "WheelEvent", "KeyboardEvent",
+  "DomRect", "AddEventListenerOptions", "ScrollToOptions", "ScrollBehavior",
+  "Navigator", "Location", "History",
+]
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"

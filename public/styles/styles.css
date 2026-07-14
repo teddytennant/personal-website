@@ -1,0 +1,435 @@
+/* ── Article / Essay / Paper stylesheet ──────────────
+   Deep black, clean dark editorial theme.
+   Light theme: warm paper, dark ink (html.light).
+   Loaded by standalone HTML pages in /essays/ and /papers/.
+   ─────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500&display=swap');
+
+:root {
+  color-scheme: dark;
+  --bg: #000000;
+  --bg-code: #0D0D0D;
+  --fg: #F5F5F5;
+  --line: rgba(255, 255, 255, 0.1);
+  --rule: rgba(255, 255, 255, 0.18);
+}
+
+html.light {
+  color-scheme: light;
+  --bg: #F3F0E8;
+  --bg-code: #ECE9DF;
+  --fg: #1A1A17;
+  --line: rgba(26, 26, 23, 0.14);
+  --rule: rgba(26, 26, 23, 0.28);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-optical-sizing: auto;
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.011em;
+}
+
+::selection {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem 4rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 1.5rem 3rem;
+  }
+}
+
+/* ── Header / Nav ─────────────────────────────────── */
+
+header {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+header h1 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+}
+
+nav a {
+  color: color-mix(in srgb, var(--fg) 40%, transparent);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+nav a:hover {
+  color: var(--fg);
+}
+
+/* ── Article content ──────────────────────────────── */
+
+article {
+  margin-top: 2rem;
+}
+
+article h1 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  color: var(--fg);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.essay-hero {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+  display: block;
+}
+
+article h2 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  color: var(--fg);
+  border-left: 2px solid var(--rule);
+  padding-left: 1rem;
+  letter-spacing: -0.01em;
+}
+
+article h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+
+article h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: color-mix(in srgb, var(--fg) 85%, transparent);
+}
+
+article p {
+  margin-bottom: 1.25rem;
+  color: color-mix(in srgb, var(--fg) 70%, transparent);
+  line-height: 1.8;
+  font-size: 1.02rem;
+}
+
+article strong {
+  color: var(--fg);
+  font-weight: 500;
+}
+
+article em {
+  color: color-mix(in srgb, var(--fg) 60%, transparent);
+  font-style: italic;
+}
+
+article a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--fg) 30%, transparent);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 0.2s ease;
+}
+
+article a:hover {
+  text-decoration-color: var(--fg);
+}
+
+/* ── Meta ─────────────────────────────────────────── */
+
+.post-meta {
+  font-size: 0.9rem;
+  color: color-mix(in srgb, var(--fg) 40%, transparent);
+  margin-bottom: 2.5rem;
+  font-style: italic;
+}
+
+.paper-header {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.paper-header h1 {
+  font-size: 2rem;
+  line-height: 1.25;
+}
+
+.paper-meta {
+  font-size: 0.9rem;
+  color: color-mix(in srgb, var(--fg) 45%, transparent);
+  margin: 1rem 0;
+  line-height: 1.6;
+}
+
+.download-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.25rem;
+  background-color: var(--fg);
+  color: var(--bg);
+  border: 1px solid var(--fg);
+  border-radius: 0;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+}
+
+.download-btn:hover {
+  background-color: transparent;
+  color: var(--fg);
+}
+
+/* ── Code ─────────────────────────────────────────── */
+
+pre {
+  background-color: var(--bg-code);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+code {
+  font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+  font-size: 0.88rem;
+  color: color-mix(in srgb, var(--fg) 75%, transparent);
+  line-height: 1.5;
+}
+
+pre code {
+  color: color-mix(in srgb, var(--fg) 70%, transparent);
+  font-size: 0.85rem;
+}
+
+/* ── Blockquotes ──────────────────────────────────── */
+
+blockquote {
+  border-left: 2px solid var(--rule);
+  padding-left: 1.25rem;
+  margin: 1.75rem 0;
+  color: color-mix(in srgb, var(--fg) 55%, transparent);
+  font-style: italic;
+}
+
+blockquote p {
+  color: color-mix(in srgb, var(--fg) 55%, transparent);
+}
+
+/* ── Lists ────────────────────────────────────────── */
+
+ul, ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+  color: color-mix(in srgb, var(--fg) 70%, transparent);
+  line-height: 1.75;
+}
+
+li strong {
+  color: var(--fg);
+}
+
+/* ── Tables ───────────────────────────────────────── */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+th, td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+
+th {
+  background-color: color-mix(in srgb, var(--fg) 4%, transparent);
+  font-weight: 500;
+  color: var(--fg);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+td {
+  color: color-mix(in srgb, var(--fg) 70%, transparent);
+}
+
+/* ── Misc ─────────────────────────────────────────── */
+
+hr {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 2.5rem 0;
+}
+
+a {
+  color: var(--fg);
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.6;
+}
+
+/* ── Theme toggle (vertical edge control) ─────────── */
+
+.theme-toggle {
+  position: fixed;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.theme-toggle button {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: color-mix(in srgb, var(--fg) 40%, transparent);
+  transition: color 0.2s ease;
+  padding: 0;
+}
+
+.theme-toggle button:hover,
+.theme-toggle button[aria-pressed='true'] {
+  color: var(--fg);
+}
+
+/* ── Responsive ───────────────────────────────────── */
+
+@media (max-width: 768px) {
+  article h1 {
+    font-size: 1.75rem;
+  }
+
+  article h2 {
+    font-size: 1.3rem;
+  }
+
+  article h3 {
+    font-size: 1rem;
+  }
+
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  /* Move the theme toggle out of the vertical center (where it overlaps
+     body copy on narrow screens) into a compact corner control. */
+  .theme-toggle {
+    top: auto;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    transform: none;
+    flex-direction: row;
+    gap: 0.75rem;
+    padding: 0.5rem 0.875rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--fg) 10%, transparent);
+    background: color-mix(in srgb, var(--bg) 70%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .theme-toggle button {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+  }
+}
+
+/* ── Print ────────────────────────────────────────── */
+
+@media print {
+  body {
+    background-color: white;
+    color: #000;
+  }
+
+  article h1, article h2, article h3, strong {
+    color: #000;
+  }
+
+  article p, li {
+    color: #333;
+  }
+
+  pre {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+  }
+
+  .theme-toggle {
+    display: none;
+  }
+}

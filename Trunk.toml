@@ -1,0 +1,21 @@
+[build]
+target = "index.html"
+release = false
+
+[serve]
+port = 8080
+open = false
+
+# The pre_build hook regenerates essay HTML into public/essays/, which lives
+# inside the copy-dir'd public/ folder Trunk watches. Without this ignore, each
+# build rewrites those files, tripping the watcher into an endless rebuild/
+# reload loop. Ignore the generated dir so only real source edits rebuild.
+[watch]
+ignore = ["public/essays"]
+
+# Render the essay pages from Rust before the asset pipeline runs, so copy-dir
+# picks them up out of public/essays/.
+[[hooks]]
+stage = "pre_build"
+command = "cargo"
+command_arguments = ["run", "-p", "essays-gen", "--quiet", "--", "public/essays"]

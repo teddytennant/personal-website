@@ -1,0 +1,258 @@
+/* Tailwind scans .rs files for class strings here, the same way it scanned .jsx
+   in the React version. Everything below this block is that project's index.css,
+   unchanged.
+
+   source(none) turns off automatic content detection so the only thing scanned is
+   the list below. Left on, Tailwind roots its search at the git dir and sweeps up
+   whatever else is lying around (the static essay HTML, build output), which makes
+   the emitted CSS depend on the machine it was built on. */
+@import "tailwindcss" source(none);
+@source "../src/**/*.rs";
+
+
+@theme {
+  --font-family-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-family-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-family-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+
+  /* Terminal monochrome: true black, warm paper-white ink, no hue accent */
+  --color-ink: #000000;
+  --color-panel: #0A0A09;
+  --color-panel-2: #141412;
+  --color-line: #262622;
+  --color-cream: #EDEBE3;
+  --color-muted: #98978E;
+  --color-accent: #FFFFFF;
+  --color-accent-light: #FFFFFF;
+  --color-glow: #FFFFFF;
+  --color-glow-dim: #B8B6AC;
+}
+
+/* ── Light theme — warm paper, dark ink ─────────────── */
+
+html {
+  color-scheme: dark;
+}
+
+html.light {
+  color-scheme: light;
+  --color-ink: #F3F0E8;
+  --color-panel: #ECE9DF;
+  --color-panel-2: #E4E1D5;
+  --color-line: #D8D5C9;
+  --color-cream: #1A1A17;
+  --color-muted: #5B5A52;
+  --color-accent: #000000;
+  --color-accent-light: #000000;
+  --color-glow: #1A1A17;
+  --color-glow-dim: #4A4943;
+}
+/* ── Base ───────────────────────────────────────────── */
+
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  @apply bg-ink text-cream antialiased;
+  font-optical-sizing: auto;
+  letter-spacing: -0.015em;
+}
+
+::selection {
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+
+
+/* ── Typography ─────────────────────────────────────── */
+
+h1, h2, h3 {
+  font-family: var(--font-family-serif);
+  font-weight: 400;
+}
+
+h1 {
+  font-weight: 900;
+}
+
+/* ── Hanging punctuation ────────────────────────────── */
+
+blockquote {
+  hanging-punctuation: first last;
+}
+
+/* ── Drop cap ──────────────────────────────────────── */
+
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--font-family-serif);
+  font-weight: 900;
+  font-size: 3.8rem;
+  line-height: 0.76;
+  margin-right: 0.14em;
+  margin-top: 0.05em;
+  color: var(--color-cream);
+  padding-left: 0.08em;
+  border-left: 2px solid var(--color-accent);
+}
+
+/* ── Blinking cursor ──────────────────────────────── */
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.cursor-blink::after {
+  content: '\2588';
+  animation: blink 1.2s step-end infinite;
+  color: var(--color-glow);
+  opacity: 0.7;
+  margin-left: 0.15em;
+  font-size: 0.85em;
+}
+
+/* ── Glow pulse ───────────────────────────────────── */
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.55; box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-glow) 35%, transparent); }
+  50% { opacity: 1; box-shadow: 0 0 6px 1px color-mix(in srgb, var(--color-glow) 45%, transparent); }
+}
+
+.glow-dot {
+  animation: glow-pulse 2.6s ease-in-out infinite;
+}
+
+/* ── Scroll cue ───────────────────────────────────── */
+
+@keyframes scroll-bob {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(5px); opacity: 1; }
+}
+
+.scroll-cue-arrow {
+  animation: scroll-bob 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue-arrow {
+    animation: none;
+  }
+}
+
+/* ── Title hover morphs ─────────────────────────────── */
+
+.title-hover {
+  position: relative;
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
+}
+
+.title-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .title-hover::after {
+  transform: scaleX(1);
+}
+
+.group:hover .title-hover {
+  transform: translateX(8px);
+  color: var(--color-cream);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Panel (transparent, white hairline) ────────────── */
+
+.panel {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
+  border-radius: 0;
+  transition: background-color 0.35s ease;
+}
+
+.panel-hover:hover {
+  background: color-mix(in srgb, var(--color-cream) 5%, transparent);
+}
+
+/* Glass hover for flat list rows (project/blog lists) — condenses on hover, no static border */
+.row-glass {
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.row-glass:hover {
+  background: color-mix(in srgb, var(--color-panel) 55%, transparent);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  box-shadow: inset 0 1px 0 0 color-mix(in srgb, var(--color-cream) 10%, transparent);
+}
+
+/* ── Nav ────────────────────────────────────────────── */
+
+.nav-solid {
+  background: var(--color-ink);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-cream) 10%, transparent);
+}
+
+/* Segmented-control style glass chip: hover wash + persistent pill for the active tab */
+.nav-chip {
+  transition: background-color 0.25s ease, backdrop-filter 0.25s ease, border-color 0.25s ease;
+}
+
+.nav-chip:hover {
+  background: color-mix(in srgb, var(--color-cream) 7%, transparent);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border-color: color-mix(in srgb, var(--color-cream) 12%, transparent);
+}
+
+.nav-pill {
+  background: color-mix(in srgb, var(--color-cream) 11%, transparent);
+  backdrop-filter: blur(14px) saturate(170%);
+  -webkit-backdrop-filter: blur(14px) saturate(170%);
+  border: 1px solid color-mix(in srgb, var(--color-cream) 18%, transparent);
+  box-shadow: inset 0 1px 0 0 color-mix(in srgb, var(--color-cream) 20%, transparent);
+}
+
+/* ── Scroll ─────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ── Focus ──────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 1.5px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* ── Transitions ────────────────────────────────────── */
+
+a, button {
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
