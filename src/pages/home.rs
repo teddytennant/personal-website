@@ -386,17 +386,8 @@ pub fn HomePage() -> impl IntoView {
                     </div>
                 </div>
 
-                // overengineeRING webring embed
-                <div class="mt-3 panel p-0 overflow-hidden">
-                    <iframe
-                        src="https://overengineering.kognise.dev/embed/teddy"
-                        title="overengineeRING embed"
-                        width="100%"
-                        height="100"
-                        style="user-select: none; border: 0; display: block; background: transparent;"
-                        frameborder="0"
-                    />
-                </div>
+                // overengineeRING embed goes back here once membership lands
+                // (PR #53 was closed unmerged; /embed/teddy 500s for unknown slugs).
             </div>
         </div>
     }
